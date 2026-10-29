@@ -3,7 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { TypeORMModule } from './infrastructure/database/typeorm';
-import { AuthFeatureModule } from './features/auth/auth.module';
+import { UserFeatureModule } from './features/user/user.module';
+import { DriverFeatureModule } from './features/driver/driver.module';
 
 @Module({
   imports: [
@@ -11,7 +12,8 @@ import { AuthFeatureModule } from './features/auth/auth.module';
       isGlobal: true,
     }),
     TypeORMModule,
-    AuthFeatureModule,
+    UserFeatureModule,
+    DriverFeatureModule,
   ],
   controllers: [AppController],
   providers: [AppService],

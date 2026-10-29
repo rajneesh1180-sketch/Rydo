@@ -3,12 +3,12 @@ import {
   CreateDateColumn,
   Entity,
   Generated,
-  JoinColumn,
   OneToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
-import { Auth } from '../auth/auth';
+import { Status } from '../enums/status.enum';
+import { Role } from '../enums/role.enum';
 import { Vehicle } from './vehicle';
 
 @Entity('driver')
@@ -20,6 +20,12 @@ export class Driver {
   @Column({ type: 'uuid', unique: true })
   uuid: string;
 
+  @Column({ unique: true, nullable: true })
+  firebase_uid?: string;
+
+  @Column({ unique: true })
+  email: string;
+
   @Column()
   first_name: string;
 
@@ -27,16 +33,33 @@ export class Driver {
   last_name: string;
 
   @Column({ unique: true, nullable: true })
-  phone: string;
+  phone?: string;
 
   @Column({ nullable: true })
-  image: string;
+  image?: string;
 
   @Column({ nullable: true })
-  gender: string;
+  gender?: string;
 
   @Column({ type: 'date', nullable: true })
-  dob: Date;
+  dob?: Date;
+
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.ACTIVE,
+  })
+  status: Status;
+
+  @Column({
+    type: 'enum',
+    enum: Role,
+    default: Role.DRIVER,
+  })
+  role: Role;
+
+  @Column({ type: 'varchar', nullable: true })
+  provider_id?: string;
 
   @CreateDateColumn()
   created_at: Date;
@@ -44,12 +67,12 @@ export class Driver {
   @UpdateDateColumn()
   updated_at: Date;
 
-  @OneToOne(() => Auth, (auth) => auth.driver, {
-    onDelete: 'CASCADE',
+  @OneToOne(() => Vehicle, (vehicle) => vehicle.driver, {
+    cascade: true,
   })
-  @JoinColumn({ name: 'auth_id' })
-  auth: Auth;
+  vehicle?: Vehicle;
 
-  @OneToOne(() => Vehicle, (vehicle) => vehicle.driver)
-  vehicle: Vehicle;
+  public isActive(): boolean {
+    return this.status === Status.ACTIVE;
+  }
 }
