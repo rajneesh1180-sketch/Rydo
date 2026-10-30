@@ -13,6 +13,7 @@ export class DriverRepository extends Repository<Driver> {
       where: { id },
       relations: {
         vehicle: true,
+        user: true,
       },
     });
   }
@@ -22,6 +23,7 @@ export class DriverRepository extends Repository<Driver> {
       where: { uuid },
       relations: {
         vehicle: true,
+        user: true,
       },
     });
   }

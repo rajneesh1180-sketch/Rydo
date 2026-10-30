@@ -4,7 +4,8 @@ import {
   Entity,
   Generated,
   Index,
-  OneToMany,
+  JoinColumn,
+  ManyToOne,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
 } from 'typeorm';
@@ -28,11 +29,16 @@ export class Rides {
   @Column({ type: 'uuid' })
   rider_id: string;
 
-  @OneToMany(() => Rides, (ride) => ride.rider)
-  rider: Users[];
+  @ManyToOne(() => Users, (user) => user.rides)
+  @JoinColumn({ name: 'rider_id', referencedColumnName: 'uuid' })
+  rider: Users;
 
-  @OneToMany(() => Rides, (ride) => ride.driver)
-  driver: Driver[];
+  @Column({ type: 'uuid', nullable: true })
+  driver_id: string | null;
+
+  @ManyToOne(() => Driver, (driver) => driver.rider, { nullable: true })
+  @JoinColumn({ name: 'driver_id', referencedColumnName: 'uuid' })
+  driver?: Driver | null;
 
   @Column({ type: 'varchar', length: 255 })
   pickup_address: string;

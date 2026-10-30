@@ -10,7 +10,7 @@ import {
 } from 'class-validator';
 import { Role } from '../../../domain/user/enums/role.enum';
 import { Status } from '../../../domain/user/enums/status.enum';
-import { UpdateVehicleDto } from '../dtos/update-vehicle.dto';
+import { UpdateVehicleDto } from './update-vehicle.dto';
 
 export class UpdateDriverDto {
   @IsOptional()

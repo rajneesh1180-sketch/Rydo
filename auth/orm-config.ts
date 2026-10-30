@@ -4,6 +4,7 @@ import { initializeTransactionalContext, addTransactionalDataSource } from 'type
 import { Users } from './src/domain/user/user';
 import { Driver } from './src/domain/driver/driver';
 import { Vehicle } from './src/domain/driver/vehicle';
+import { Rides } from './src/domain/rides/rides.entity';
 require('dotenv').config();
 
 initializeTransactionalContext();
@@ -19,7 +20,7 @@ export const dataSourceOptions = (
   username: configService.get<string>('DB_USERNAME') || process.env.DB_USERNAME || 'postgres',
   password: configService.get<string>('DB_PASSWORD') || process.env.DB_PASSWORD || 'postgres',
   database: configService.get<string>('DB_NAME') || process.env.DB_NAME || 'taxii_auth',
-  entities: [Users, Driver, Vehicle],
+  entities: [Users, Driver, Vehicle, Rides],
   synchronize: configService.get<string>('NODE_ENV') !== 'production',
   migrationsTableName: 'migrations',
   migrations: ['dist/src/infrastructure/database/migrations/*.js'],

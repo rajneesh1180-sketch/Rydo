@@ -2,6 +2,7 @@ import {
   Column,
   Entity,
   Generated,
+  JoinColumn,
   OneToMany,
   OneToOne,
   PrimaryGeneratedColumn,
@@ -20,10 +21,15 @@ export class Driver {
   @Column({ type: 'uuid', unique: true })
   uuid: string;
 
-  @Column()
+  @Column({
+    type: 'enum',
+    enum: Status,
+    default: Status.ACTIVE,
+  })
   status: Status;
 
   @OneToOne(() => Users, (user) => user.driver)
+  @JoinColumn({ name: 'user_id' })
   user: Users;
 
   @OneToOne(() => Vehicle, (vehicle) => vehicle.driver, {

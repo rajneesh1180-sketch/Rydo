@@ -11,7 +11,7 @@ import {
 } from 'class-validator';
 import { Role } from '../../../domain/user/enums/role.enum';
 import { Status } from '../../../domain/user/enums/status.enum';
-import { VehicleDto } from '../dtos/vehicle.dto';
+import { VehicleDto } from '../update/vehicle.dto';
 
 export class SaveDriverDto {
   @IsEmail()
