@@ -8,8 +8,8 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { Role } from '../../../domain/enums/role.enum';
-import { Status } from '../../../domain/enums/status.enum';
+import { Role } from '../../../domain/user/enums/role.enum';
+import { Status } from '../../../domain/user/enums/status.enum';
 import { UpdateVehicleDto } from '../dtos/update-vehicle.dto';
 
 export class UpdateDriverDto {

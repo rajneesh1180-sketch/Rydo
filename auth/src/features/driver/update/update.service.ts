@@ -3,8 +3,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
-import { DriverRepository } from '../../../infrastructure/database/repositories/driver.repository';
-import { VehicleRepository } from '../../../infrastructure/database/repositories/vehicle.repository';
+import { DriverRepository } from '../../../infrastructure/repositories/driver.repository';
+import { VehicleRepository } from '../../../infrastructure/repositories/vehicle.repository';
 import { Driver } from '../../../domain/driver/driver';
 import { DriverUpdateCommand } from './update.command';
 

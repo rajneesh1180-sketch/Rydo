@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
-import { UserSaveModule } from './save-user/save.module';
-import { UserGetModule } from './get/get.module';
-import { UserUpdateModule } from './update/update.module';
+import { UserSaveModule } from './register-user/register-user.module';
+import { UserGetModule } from './get-user/get-user.module';
+import { UserUpdateModule } from './update -user/update-user.module';
 import { UserDeleteModule } from './delete-user/delete.module';
 
 @Module({
